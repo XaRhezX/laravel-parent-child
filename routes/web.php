@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FamilyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
+
+    Route::resource('families', FamilyController::class);
+    Route::get('family-tree', [FamilyController::class, 'tree'])->name('families.tree');
 
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
